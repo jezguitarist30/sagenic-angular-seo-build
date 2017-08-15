@@ -6,7 +6,7 @@ const ngExpressEngine = require('@nguniversal/express-engine').ngExpressEngine;
 
 
 var hash;
-fs.readdirSync(path.join(__dirname, '/server').forEach(file => {
+fs.readdirSync(path.join(__dirname, '/server')).forEach(file => {
   if (file.startsWith('main')) {
   hash = file.split('.')[1];
 }

@@ -10,6 +10,11 @@
     "node": ">=6.9.1"
   },
   "dependencies": {
+    "@angular/animations": "4.3.1",
+    "@angular/common": "4.3.1",
+    "@angular/compiler": "4.3.1",
+    "@angular/core": "4.3.1",
+    "@angular/platform-browser": "4.3.1",
     "@angular/platform-server": "4.3.1",
     "@nguniversal/express-engine": "^1.0.0-beta.2",
     "compression": "^1.7.0",

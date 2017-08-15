@@ -4,6 +4,7 @@ const express = require('express');
 const compression = require('compression');
 const ngExpressEngine = require('@nguniversal/express-engine').ngExpressEngine;
 
+require('zone.js/dist/zone-node');
 
 var hash;
 fs.readdirSync(path.join(__dirname, '/server')).forEach(file => {

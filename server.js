@@ -56,8 +56,14 @@ app.get('*.*', express.static(path.join(__dirname, '/browser')));
 
 console.log(path.join(__dirname, '/browser'));
 
-app.get('*', (req, res) => {
-  res.render('index', { req });
+app.use((req, res, next) => {
+    console.log('logging...');
+    next();
+});
+
+app.get('/', (req, res) => {
+  res.send('hello world');
+  //res.render('index', { req });
 });
 
 // // app.get('/*', function (req, res) {

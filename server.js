@@ -3,6 +3,7 @@ const fs = require('fs');
 const express = require('express');
 const compression = require('compression');
 const ngExpressEngine = require('@nguniversal/express-engine').ngExpressEngine;
+const renderModuleFactory = require('@angular/platform-server').renderModuleFactory;
 
 require('zone.js/dist/zone-node');
 
@@ -16,20 +17,41 @@ fs.readdirSync(path.join(__dirname, '/server')).forEach(file => {
 const AppServerModuleNgFactory = require('./server/main.' + hash + '.bundle').AppServerModuleNgFactory;
 
 const app = express();
-const port = Number(process.env.PORT || 1337);
+const port = Number(process.env.PORT || 3000);
 
-app.engine('html', ngExpressEngine({
-  baseUrl: 'http://localhost:' + port,
-  bootstrap: AppServerModuleNgFactory
-}));
 
+let template = fs.readFileSync(path.join(__dirname, '/browser', 'index.html')).toString();
+console.log(template);
+app.engine('html', (_, options, callback) => {
+  const opts = { document: template, url: options.req.url };
+
+  renderModuleFactory(AppServerModuleNgFactory, opts)
+    .then(html => callback(null, html));
+});
+
+// // app.engine('html', ngExpressEngine({
+// //   baseUrl: 'http://localhost:' + port,
+// //   bootstrap: AppServerModuleNgFactory
+// // }));
+
+// // app.set('view engine', 'html');
+// // app.set('views', 'src')
+
+// // app.get('*.*', express.static(join(__dirname, '..', 'dist')));
+
+// // app.get('*', (req, res) => {
+// //   res.render('index', { req });
+// // });
+
+// // app.listen(PORT, () => {
+// //   console.log(`listening on http://localhost:${PORT}!`);
+// // });
 
 app.set('view engine', 'html');
 app.set('views', path.join(__dirname, '/browser'));
 
 app.use(compression());
 app.use('/', express.static(path.join(__dirname, '/browser'), {index: false}));
-
 
 app.get('/*', function (req, res) {
   res.render('index', {

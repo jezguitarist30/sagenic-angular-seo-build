@@ -2,8 +2,7 @@
   "name": "sagenic-angular-seo",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {
-    "prestart": "npm install",
+  "scripts": {    
     "start": "node server.js"
   },
   "private": true,
@@ -18,8 +17,7 @@
     "@angular/http": "^4.3.4",
     "@angular/platform-browser": "^4.3.4",
     "@angular/platform-server": "^4.3.4",
-    "@angular/router": "^4.3.4",
-    "@nguniversal/express-engine": "^1.0.0-beta.2",
+    "@angular/router": "^4.3.4",    
     "compression": "^1.7.0",
     "express": "^4.15.4",
     "rxjs": "^5.4.2",

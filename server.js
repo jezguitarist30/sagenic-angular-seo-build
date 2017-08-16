@@ -2,7 +2,6 @@ const path = require('path');
 const fs = require('fs');
 const express = require('express');
 const compression = require('compression');
-const ngExpressEngine = require('@nguniversal/express-engine').ngExpressEngine;
 const renderModuleFactory = require('@angular/platform-server').renderModuleFactory;
 const core = require('@angular/core');
 require('zone.js/dist/zone-node');

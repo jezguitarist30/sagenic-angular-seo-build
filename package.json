@@ -8,7 +8,7 @@
   },
   "private": true,
   "engines": {
-    "node": ">=6.9.1"
+    "node": ">=6.11.0"
   },
   "dependencies": {
     "@angular/animations": "^4.3.4",

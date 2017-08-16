@@ -51,14 +51,21 @@ app.set('view engine', 'html');
 app.set('views', path.join(__dirname, '/browser'));
 
 app.use(compression());
-app.use('/', express.static(path.join(__dirname, '/browser'), {index: false}));
+//app.use('/', express.static(path.join(__dirname, '/browser'), {index: false}));
+app.get('*.*', express.static(path.join(__dirname, '/browser')));
 
-app.get('/*', function (req, res) {
-  res.render('index', {
-    req: req,
-    // res: res
-  });
+console.log(path.join(__dirname, '/browser'));
+
+app.get('*', (req, res) => {
+  res.render('index', { req });
 });
+
+// // app.get('/*', function (req, res) {
+// //   res.render('index', {
+// //     req: req,
+// //     // res: res
+// //   });
+// // });
 
 app.listen(port, function() {
   console.log(`Listening at ${port}`);

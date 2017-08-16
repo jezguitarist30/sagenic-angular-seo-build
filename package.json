@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "prestart": "npm install",
     "start": "node server.js"
   },
   "private": true,
